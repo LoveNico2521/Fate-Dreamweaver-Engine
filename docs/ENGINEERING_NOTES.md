@@ -91,4 +91,5 @@
 - 新增 UI 元素時,檢查 keydown 的擋除清單(INPUT/TEXTAREA/SELECT/BUTTON/contentEditable)
 - `main.py` 的 `resource_path()` 依賴 `_MEIPASS`,PyInstaller 打包指令的 `--add-data "index_classic.html;."` 不可拿掉
 - Android APK 打包專案在 `C:\Users\user\.zcode\workspace\draft-2beac78f-4219-4cd9-b92e-486264f76810\fate-dreamweaver\_apkbuild`**(不在 repo 內;node_modules 與 build 產物太大故未納入 git)。重打包:`cd _apkbuild/android` 後設 `JAVA_HOME=C:\Program Files\Eclipse Adoptium\jdk-21.0.11.10-hotspot`、`ANDROID_HOME=C:\Android\Sdk`,再 `gradlew assembleDebug`;SDK 已裝在 C:\Android\Sdk
+- **APK 單檔原則(主人 2026-11-09 裁決,兩分支皆然)**:`www/` 只放**當版單一檔案**——`index.html` = 當版 `index_classic.html` 全文(Capacitor 直接載入,App 打開就是引擎)。**不放版本選擇頁、不放歷史版本**(使用者不需要選 v44/v45/v46;歷史正本在 repo `legacy/` 與 GitHub Releases)。更新步驟:`cp index_classic.html _apkbuild/www/index.html` → `npx cap copy android` → `gradlew assembleDebug`
 - 桌面版 CSV 存檔走 `window.pywebview.api.save_csv`,網頁版走 blob 下載——兩條路都要測
